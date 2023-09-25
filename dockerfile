@@ -26,25 +26,5 @@ RUN mv terraform /usr/local/bin/
 # Check that it's installed
 RUN terraform --version 
 
-################################
-# Install python
-################################
 
-RUN apt-get install -y python3-pip
-#RUN ln -s /usr/bin/python3 python
-RUN pip3 install --upgrade pip
-RUN python3 -V
-RUN pip --version
 
-################################
-# Install AWS CLI
-################################
-RUN pip install awscli --upgrade --user
-
-# add aws cli location to path
-ENV PATH=~/.local/bin:$PATH
-
-# Adds local templates directory and contents in /usr/local/terrafrom-templates
-ADD templates /usr/local/bin/templates
-
-RUN mkdir ~/.aws && touch ~/.aws/credentials
